@@ -1,4 +1,4 @@
-import * as Types from "../models/model";
+import * as Types from "../model";
 import classes from "../styles/Cat.module.css";
 import { Link } from "react-router-dom";
 

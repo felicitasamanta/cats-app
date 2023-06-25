@@ -1,5 +1,5 @@
 export enum Order {
-  ASC = `ASCENDING`,
-  DESC = `DESCENDING`,
-  RAND = `RANDOM`,
+  ASC = `ASC`,
+  DESC = `DESC`,
+  RAND = `RAND`,
 }

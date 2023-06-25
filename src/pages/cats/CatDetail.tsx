@@ -1,9 +1,9 @@
-import { Cat } from "./models/model";
-import classes from "./styles/CatDetail.module.css";
-import { CatItem } from "./components/CatItem";
+import { Cat } from "./common/model";
+import classes from "./common/styles/CatDetail.module.css";
+import { CatItem } from "./common/components/CatItem";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import { LoaderContainer } from "./helpers/LoaderContainer";
+import { LoaderContainer } from "../../common/components/LoaderContainer";
 
 async function fetchCat(id: string) {
   const response = await fetch(`https://api.thecatapi.com/v1/images/${id}`);

@@ -1,5 +1,5 @@
-import loader from "./loading.gif";
-import classes from "./Loader.module.css";
+import loader from "../assets/loading.gif";
+import classes from "../styles/Loader.module.css";
 const Loader = () => {
   return (
     <div className={classes.loader}>

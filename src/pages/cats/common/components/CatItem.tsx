@@ -1,4 +1,4 @@
-import * as Types from "../models/model";
+import * as Types from "../model";
 import classes from "../styles/CatItems.module.css";
 
 const CatItem: React.FC<{ cat: Types.Cat }> = (props) => {

@@ -1,40 +1,25 @@
-import * as Types from "./models/model";
-import { Cat } from "./components/Cat";
-import classes from "./styles/Cats.module.css";
-import { useQuery } from "react-query";
-import { LoaderContainer } from "./helpers/LoaderContainer";
+import { Cat } from "./common/components/Cat";
+import classes from "./common/styles/Cats.module.css";
+import { LoaderContainer } from "../../common/components/LoaderContainer";
 import { Order } from "../../common/model";
 import { useEffect } from "react";
 import { useQueryParams } from "../../common/hooks/useQueryParams";
+import { useCats } from "./common/hooks/useCats";
+import { getOrderName } from "../../common/helpers/getOrderName";
 
 const Cats = () => {
   const { params, queryString, setSearchParam } = useQueryParams();
+  const { isLoading, data, refetch } = useCats(queryString);
   const order = params.order;
 
-  const fetchCats = async () => {
-    const response = await fetch(
-      `https://api.thecatapi.com/v1/images/search?limit=10&${queryString}&api_key=live_23gBCX5oksoKw4hl4o6DMzmjuh2APvDNxWAAC2Ctrg9zgEcomnY44ce7mSbfuyjF`
-    );
-    return response.json();
-  };
-
-  const { isLoading, isRefetching, data, refetch } = useQuery<Types.Cats>(
-    "cats",
-    fetchCats,
-    {
-      cacheTime: 0,
-    }
-  );
-  const loading = isLoading || isRefetching;
+  useEffect(() => {
+    refetch();
+  }, [order]);
 
   const onChange = (event: any) => {
     const value = event.target.value;
     setSearchParam("order", value);
   };
-
-  useEffect(() => {
-    refetch();
-  }, [order]);
 
   return (
     <div>
@@ -45,14 +30,14 @@ const Cats = () => {
           name="order"
           id="order"
           defaultValue="RAND"
-          disabled={loading}
+          disabled={isLoading}
         >
-          <option value="RAND">{Order.RAND}</option>
-          <option value="ASC">{Order.ASC}</option>
-          <option value="DESC">{Order.DESC}</option>
+          <option value={Order.RAND}>{getOrderName(Order.RAND)}</option>
+          <option value={Order.ASC}>{getOrderName(Order.ASC)}</option>
+          <option value={Order.DESC}>{getOrderName(Order.DESC)}</option>
         </select>
       </div>
-      <LoaderContainer isLoading={loading}>
+      <LoaderContainer isLoading={isLoading}>
         <ul className={classes.list}>
           {data?.map((cat) => (
             <Cat key={cat.id} cat={cat} />

@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ErrorPage from "./pages/cats/helpers/ErrorPage.tsx";
 import { CatDetail } from "./pages/cats/CatDetail.tsx";
 import { QueryClient, QueryClientProvider } from "react-query";
 import Cats from "./pages/cats/Cats.tsx";
+import ErrorPage from "./common/components/ErrorPage.tsx";
 
 const router = createBrowserRouter([
   {
