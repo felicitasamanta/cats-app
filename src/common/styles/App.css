@@ -1,5 +1,8 @@
+* {
+  box-sizing: border-box;
+}
 body {
-  background-color: #242424;
+  background-color: #eca2a2;
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;

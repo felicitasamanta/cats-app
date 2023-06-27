@@ -5,6 +5,7 @@ import { CatDetail } from "./pages/cats/CatDetail.tsx";
 import { QueryClient, QueryClientProvider } from "react-query";
 import Cats from "./pages/cats/Cats.tsx";
 import ErrorPage from "./common/components/ErrorPage.tsx";
+import "./common/styles/App.css";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,13 @@ const router = createBrowserRouter([
   },
 ]);
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
