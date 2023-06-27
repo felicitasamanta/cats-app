@@ -4,6 +4,7 @@ import { Order } from "../model";
 interface QueryParams {
   order?: Order;
   page?: string;
+  breed_ids?: string;
 }
 
 const useQueryParams = () => {
@@ -17,17 +18,18 @@ const useQueryParams = () => {
     return acc;
   }, {});
 
-  const setQueryParam = (
-    key: keyof QueryParams,
-    value: Order | string | number
-  ) => {
+  const setQueryParams = (params: QueryParams) => {
+    setSearchParams(params as any);
+  };
+
+  const setQueryParam = (key: keyof QueryParams, value: string | number) => {
     setSearchParams({ ...params, [key]: value });
   };
 
   return {
     params,
     queryString: searchParams.toString(),
-    setQueryParams: setSearchParams,
+    setQueryParams,
     setQueryParam,
   };
 };

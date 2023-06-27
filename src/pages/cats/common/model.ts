@@ -1,4 +1,5 @@
 export interface Cat {
+  image: any;
   id: string;
   url: string;
   width: number;

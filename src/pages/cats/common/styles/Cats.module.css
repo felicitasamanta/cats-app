@@ -6,7 +6,7 @@
   margin-top: 120px;
 }
 
-.filter_order {
+.filter {
   display: flex;
   justify-content: center;
   gap: 10px;

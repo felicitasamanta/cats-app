@@ -23,7 +23,9 @@ const Pagination: React.FC<Props> = ({ total }) => {
     const isInTheMiddle = currentPage >= 4 && currentPage < totalPages - 3;
     let pages;
 
-    if (isAtTheStart) {
+    if (totalPages < 8) {
+      pages = new Array(totalPages).fill("").map((_, i) => i + 1);
+    } else if (isAtTheStart) {
       pages = [1, 2, 3, 4, 5, "...", totalPages];
     } else if (isInTheMiddle) {
       pages = [
