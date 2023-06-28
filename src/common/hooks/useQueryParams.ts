@@ -5,6 +5,7 @@ interface QueryParams {
   order?: Order;
   page?: string;
   breed_ids?: string;
+  image_id?: string;
 }
 
 const useQueryParams = () => {
@@ -31,6 +32,7 @@ const useQueryParams = () => {
     queryString: searchParams.toString(),
     setQueryParams,
     setQueryParam,
+    setSearchParams,
   };
 };
 
