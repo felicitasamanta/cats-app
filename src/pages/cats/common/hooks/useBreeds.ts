@@ -9,14 +9,11 @@ const useBreeds = () => {
   };
   const { isLoading, isRefetching, data, refetch } = useQuery(
     "breeds",
-    fetchBreeds,
-    {
-      cacheTime: 0,
-    }
+    fetchBreeds
   );
 
   return {
-    isBreedsLoading: isLoading || isRefetching,
+    isLoading: isLoading || isRefetching,
     breeds: data?.breeds,
     refetchBreeds: refetch,
   };

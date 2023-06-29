@@ -18,12 +18,11 @@ const Pagination: React.FC<Props> = ({ total }) => {
     }
   };
 
-  const getPages = () => {
+  const renderPages = () => {
     const isAtTheStart = currentPage < 4;
     const isInTheMiddle = currentPage >= 4 && currentPage < totalPages - 3;
     let pages;
 
-    if (totalPages < 2) return;
     if (totalPages < 8) {
       pages = new Array(totalPages).fill("").map((_, i) => i + 1);
     } else if (isAtTheStart) {
@@ -58,7 +57,9 @@ const Pagination: React.FC<Props> = ({ total }) => {
     ));
   };
 
-  return <div className={classes.container}>{getPages()}</div>;
+  if (!totalPages || totalPages < 2) return null;
+
+  return <div className={classes.container}>{renderPages()}</div>;
 };
 
 export { Pagination };

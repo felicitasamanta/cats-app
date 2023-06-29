@@ -8,7 +8,7 @@ type BreedsProps = {
 };
 
 const Breeds: React.FC<BreedsProps> = ({ isLoading }) => {
-  const { isBreedsLoading, breeds } = useBreeds();
+  const { isLoading: isBreedsLoading, breeds } = useBreeds();
   const { params, setQueryParams } = useQueryParams();
   const { breed_ids: breedId } = params;
 
@@ -32,7 +32,7 @@ const Breeds: React.FC<BreedsProps> = ({ isLoading }) => {
           name="breed"
           id="breed"
           defaultValue={breedId || "all"}
-          disabled={isBreedsLoading || isLoading}
+          disabled={isLoading || isBreedsLoading}
         >
           <option value="all">All</option>
           {breeds?.map((breed: any) => (

@@ -9,8 +9,8 @@ interface QueryParams {
 }
 
 const useQueryParams = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const searchEntries = Array.from(searchParams.entries()) as [
+  const [urlSearchParams, setSearchParams] = useSearchParams();
+  const searchEntries = Array.from(urlSearchParams.entries()) as [
     keyof QueryParams,
     string
   ][];
@@ -28,8 +28,9 @@ const useQueryParams = () => {
   };
 
   return {
+    urlSearchParams,
     params,
-    queryString: searchParams.toString(),
+    queryString: urlSearchParams.toString(),
     setQueryParams,
     setQueryParam,
     setSearchParams,

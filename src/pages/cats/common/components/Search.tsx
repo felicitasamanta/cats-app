@@ -1,11 +1,11 @@
-import { useQueryParams } from "../hooks/useQueryParams";
-import classes from "../../common/styles/Filters.module.css";
+import { useQueryParams } from "../../../../common/hooks/useQueryParams";
+import classes from "../../../../common/styles/Filters.module.css";
+
 // import { useSearch } from "../../pages/cats/common/hooks/useSearch";
 
 const Search = () => {
   const { params, setQueryParams } = useQueryParams();
   const { image_id: imageId } = params;
-  // const { isImageLoading, image, refetchImage } = useSearch();
 
   const onSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
