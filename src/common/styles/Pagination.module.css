@@ -4,7 +4,7 @@
   gap: 5px;
 }
 .container span {
-  border: 1px solid rgb(217, 61, 87);
+  border: 1px solid #fb6f92;
   border-radius: 50%;
   cursor: pointer;
   width: 30px;

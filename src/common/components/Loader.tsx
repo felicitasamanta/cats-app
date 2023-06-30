@@ -5,7 +5,7 @@ const Loader = () => {
     <div className={classes.loader}>
       <div>
         <h1>Loading...</h1>
-        <img src={loader} alt="Loader" />
+        <img src={loader} className={classes.img} alt="Loader" />
       </div>
     </div>
   );

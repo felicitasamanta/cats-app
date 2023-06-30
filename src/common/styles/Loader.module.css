@@ -3,3 +3,7 @@
   justify-content: center;
   height: 100vh;
 }
+
+.img {
+  border-radius: 19px;
+}

@@ -8,11 +8,29 @@ import { Pagination } from "../../common/components/Pagination";
 import { Search } from "./common/components/Search";
 import { Breeds } from "./common/components/Breeds";
 import { OrderComponent } from "../../common/components/OrderComponent";
+import { Dropdown, Options } from "../../common/components/Dropdown";
+import { Order } from "../../common/model";
 
 const Cats = () => {
   const { params } = useQueryParams();
   const { isLoading, data, total, refetch } = useCats();
   const { order, page, breed_ids: breedId, image_id: imageId } = params;
+
+  const orderOptions: Options = [
+    {
+      name: "Random",
+      value: Order.RAND,
+      selected: true,
+    },
+    {
+      name: "Ascending",
+      value: Order.ASC,
+    },
+    {
+      name: "Descending",
+      value: Order.DESC,
+    },
+  ];
 
   useEffect(() => {
     refetch();
@@ -20,6 +38,8 @@ const Cats = () => {
 
   return (
     <div>
+      {/* <Dropdown placeHolder="Select the breed..." options={options} /> */}
+      <Dropdown placeHolder="Select order..." options={orderOptions} />
       <OrderComponent isLoading={isLoading} />
       <Breeds isLoading={isLoading} />
       <Search />
