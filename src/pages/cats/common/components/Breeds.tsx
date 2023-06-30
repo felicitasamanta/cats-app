@@ -14,13 +14,12 @@ const Breeds: React.FC<BreedsProps> = ({ isLoading }) => {
 
   const onBreedChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
-    const queryParams = { ...params };
-    delete queryParams.page;
 
-    if (value === "all") delete queryParams.breed_ids;
-    else queryParams.breed_ids = value;
-
-    setQueryParams(queryParams);
+    setQueryParams({
+      ...params,
+      breed_ids: value === "all" ? null : value,
+      page: null,
+    });
   };
 
   return (

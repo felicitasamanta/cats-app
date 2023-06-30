@@ -1,6 +1,8 @@
 import { useSearchParams } from "react-router-dom";
 import { Order } from "../model";
 
+type Nullable<T> = T | null;
+
 interface QueryParams {
   order?: Order;
   page?: string;
@@ -8,9 +10,16 @@ interface QueryParams {
   image_id?: string;
 }
 
+interface QueryParamsInput {
+  order?: Nullable<Order>;
+  page?: Nullable<string>;
+  breed_ids?: Nullable<string>;
+  image_id?: Nullable<string>;
+}
+
 const useQueryParams = () => {
-  const [urlSearchParams, setSearchParams] = useSearchParams();
-  const searchEntries = Array.from(urlSearchParams.entries()) as [
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchEntries = Array.from(searchParams.entries()) as [
     keyof QueryParams,
     string
   ][];
@@ -19,21 +28,34 @@ const useQueryParams = () => {
     return acc;
   }, {});
 
-  const setQueryParams = (params: QueryParams) => {
-    setSearchParams(params as any);
+  const setQueryParams = (params: QueryParamsInput) => {
+    const filteredParams = Object.entries(params).reduce<QueryParams>(
+      (acc, [key, value]) => {
+        if (value) acc[key as keyof QueryParams] = value;
+        return acc;
+      },
+      {}
+    );
+    setSearchParams(filteredParams as any);
   };
 
   const setQueryParam = (key: keyof QueryParams, value: string | number) => {
     setSearchParams({ ...params, [key]: value });
   };
 
+  const removeQueryParam = (key: keyof QueryParams) => {
+    const queryParams = { ...params };
+    delete queryParams[key];
+    setQueryParams(queryParams);
+  };
+
   return {
-    urlSearchParams,
+    searchParams,
     params,
-    queryString: urlSearchParams.toString(),
+    queryString: searchParams.toString(),
     setQueryParams,
     setQueryParam,
-    setSearchParams,
+    removeQueryParam,
   };
 };
 

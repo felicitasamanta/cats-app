@@ -11,9 +11,11 @@ const OrderComponent: React.FC<OrderComponentProps> = ({ isLoading }) => {
   const { order } = params;
 
   const onOrderChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const queryParams = { ...params };
-    delete queryParams.page;
-    setQueryParams({ ...queryParams, order: event.target.value as Order });
+    setQueryParams({
+      ...params,
+      order: event.target.value as Order,
+      page: null,
+    });
   };
 
   return (

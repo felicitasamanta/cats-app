@@ -1,17 +1,25 @@
+import { useState } from "react";
 import { useQueryParams } from "../../../../common/hooks/useQueryParams";
 import classes from "../../../../common/styles/Filters.module.css";
-
-// import { useSearch } from "../../pages/cats/common/hooks/useSearch";
+import { useDebounce } from "../../../../common/hooks/useDebounce";
 
 const Search = () => {
-  const { params, setQueryParams } = useQueryParams();
-  const { image_id: imageId } = params;
+  const [searchValue, setSearchValue] = useState("");
+
+  const { params, setQueryParam, removeQueryParam } = useQueryParams();
+
+  const applySearch = (debouncedValue: string) => {
+    if (debouncedValue) {
+      setQueryParam("image_id", searchValue);
+    } else if (!debouncedValue && params.image_id) {
+      removeQueryParam("image_id");
+    }
+  };
+
+  useDebounce({ value: searchValue, onChange: applySearch });
 
   const onSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    const queryParams = { ...params };
-
-    setQueryParams({ ...queryParams, image_id: value });
+    setSearchValue(event.target.value);
   };
 
   return (
@@ -22,7 +30,7 @@ const Search = () => {
         placeholder="Search..."
         name="search"
         id="search"
-        defaultValue={imageId || ""}
+        value={searchValue}
       />
     </div>
   );
