@@ -5,6 +5,14 @@
   width: 50%;
 }
 
+.container__disabled {
+  opacity: 0.5;
+}
+
+.container__disabled div {
+  cursor: default;
+}
+
 .input {
   display: flex;
   flex-shrink: 1;

@@ -38,8 +38,7 @@ const Cats = () => {
 
   return (
     <div>
-      {/* <Dropdown placeHolder="Select the breed..." options={options} /> */}
-      <Dropdown placeHolder="Select order..." options={orderOptions} />
+      <Dropdown options={orderOptions} disabled={isLoading} />
       <OrderComponent isLoading={isLoading} />
       <Breeds isLoading={isLoading} />
       <Search />

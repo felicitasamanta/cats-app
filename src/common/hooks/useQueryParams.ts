@@ -3,6 +3,8 @@ import { Order } from "../model";
 
 type Nullable<T> = T | null;
 
+type QueryParamValue = Nullable<string | number>;
+
 interface QueryParams {
   order?: Order;
   page?: string;
@@ -12,9 +14,9 @@ interface QueryParams {
 
 interface QueryParamsInput {
   order?: Nullable<Order>;
-  page?: Nullable<string>;
-  breed_ids?: Nullable<string>;
-  image_id?: Nullable<string>;
+  page?: QueryParamValue;
+  breed_ids?: QueryParamValue;
+  image_id?: QueryParamValue;
 }
 
 const useQueryParams = () => {

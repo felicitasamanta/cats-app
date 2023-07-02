@@ -34,7 +34,7 @@ const IconUp = () => {
   );
 };
 
-interface Option {
+export interface Option {
   name: string;
   value: string | number;
   selected?: boolean;
@@ -45,14 +45,42 @@ export type Options = Option[];
 interface Props {
   options: Options;
   placeHolder?: string;
+  preselect?: boolean;
+  isDisabled?: boolean;
+  isLoading?: boolean;
+  onChange: (option: Option) => void;
 }
 
-const Dropdown: React.FC<Props> = ({ options, placeHolder }) => {
+const Dropdown: React.FC<Props> = ({
+  options,
+  placeHolder,
+  preselect,
+  isDisabled,
+  isLoading,
+  onChange,
+}) => {
   const [optionsVisible, setShowOptions] = useState(false);
-  const initialOption = options.find((option) => option.selected);
+  const preselectedOption = options.find((option) => option.selected);
+  const disabled = isDisabled || isLoading;
+
+  const getInitialOption = () => {
+    if (preselectedOption) return preselectedOption;
+    if (!preselectedOption && preselect) return options[0];
+  };
+
   const [selectedOption, setSelectedOption] = useState<Option | undefined>(
-    initialOption
+    getInitialOption()
   );
+
+  useEffect(() => {
+    if (isLoading === false) {
+      const initialOption = getInitialOption();
+
+      if (initialOption?.value !== selectedOption?.value) {
+        setSelectedOption(initialOption);
+      }
+    }
+  }, [isLoading]);
 
   const close = () => setShowOptions(false);
 
@@ -64,24 +92,32 @@ const Dropdown: React.FC<Props> = ({ options, placeHolder }) => {
     };
   }, []);
 
-  const onChange = (option: Option) => setSelectedOption(option);
+  const onSelect = (option: Option) => {
+    setSelectedOption(option);
+    onChange(option);
+  };
 
   const show = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setShowOptions(!optionsVisible);
+    if (!disabled) setShowOptions(!optionsVisible);
   };
 
+  if (!options.length) return null;
+
   return (
-    <div className={classes.container}>
+    <div
+      className={classNames(classes.container, {
+        [classes.container__disabled]: disabled,
+      })}
+    >
       <div onClick={show} className={classes.input}>
         <div className={classes.selected}>
-          {selectedOption?.name || placeHolder}
+          {isLoading ? "Loading..." : selectedOption?.name || placeHolder}
         </div>
         <div className={classes.tools}>
           <div className={classes.tool}>
             {optionsVisible ? <IconUp /> : <IconDown />}
           </div>
-
           {optionsVisible && (
             <div className={classes.menu}>
               {options.map((option) => (
@@ -90,7 +126,7 @@ const Dropdown: React.FC<Props> = ({ options, placeHolder }) => {
                   className={classNames(classes.dropdown_item, {
                     [classes.selected]: option.value === selectedOption?.value,
                   })}
-                  onClick={() => onChange(option)}
+                  onClick={() => onSelect(option)}
                 >
                   {option.name}
                 </div>
