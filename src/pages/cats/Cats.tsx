@@ -1,36 +1,16 @@
 import { useEffect } from "react";
 import { Cat } from "./common/components/Cat";
 import classes from "./common/styles/Cats.module.css";
-import { LoaderContainer } from "../../common/components/LoaderContainer";
-import { useQueryParams } from "../../common/hooks/useQueryParams";
 import { useCats } from "./common/hooks/useCats";
-import { Pagination } from "../../common/components/Pagination";
-import { Search } from "./common/components/Search";
-import { Breeds } from "./common/components/Breeds";
-import { OrderComponent } from "../../common/components/OrderComponent";
-import { Dropdown, Options } from "../../common/components/Dropdown";
-import { Order } from "../../common/model";
+import { Filters } from "./common/components/Filters";
+import { useQueryParams } from "@/common/hooks/useQueryParams";
+import { LoaderContainer } from "@/common/components/LoaderContainer";
+import { Pagination } from "@/common/components/Pagination";
 
 const Cats = () => {
   const { params } = useQueryParams();
   const { isLoading, data, total, refetch } = useCats();
   const { order, page, breed_ids: breedId, image_id: imageId } = params;
-
-  const orderOptions: Options = [
-    {
-      name: "Random",
-      value: Order.RAND,
-      selected: true,
-    },
-    {
-      name: "Ascending",
-      value: Order.ASC,
-    },
-    {
-      name: "Descending",
-      value: Order.DESC,
-    },
-  ];
 
   useEffect(() => {
     refetch();
@@ -38,10 +18,7 @@ const Cats = () => {
 
   return (
     <div>
-      <Dropdown options={orderOptions} disabled={isLoading} />
-      <OrderComponent isLoading={isLoading} />
-      <Breeds isLoading={isLoading} />
-      <Search />
+      <Filters isLoading={isLoading} />
       <LoaderContainer isLoading={isLoading}>
         <ul className={classes.list}>
           {data?.map((cat) => (

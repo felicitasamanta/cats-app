@@ -1,8 +1,7 @@
 .container {
   font-weight: 600;
   position: relative;
-  margin: 0 auto;
-  width: 50%;
+  width: 200px;
 }
 
 .container__disabled {
@@ -24,9 +23,8 @@
   user-select: none;
   cursor: pointer;
   background-color: #ffe5ec;
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  border: 1px solid #ffc2d1;
   border-radius: 10px;
-
   box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.1);
 }
 
@@ -38,7 +36,7 @@
 .menu {
   position: absolute;
   transform: translateY((30px));
-  top: 35px;
+  top: 100%;
   left: 0;
   width: 100%;
   border-radius: 10px;
@@ -51,7 +49,6 @@
   cursor: pointer;
   padding: 5px;
   border-radius: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.15);
 }
 .dropdown_item:hover {
   background-color: #ffc2d1;

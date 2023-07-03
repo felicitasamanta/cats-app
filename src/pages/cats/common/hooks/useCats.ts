@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import { Cats } from "../model";
-import { useQueryParams } from "../../../../common/hooks/useQueryParams";
+import { useQueryParams } from "@/common/hooks/useQueryParams";
 
 const API_KEY =
   "live_23gBCX5oksoKw4hl4o6DMzmjuh2APvDNxWAAC2Ctrg9zgEcomnY44ce7mSbfuyjF";

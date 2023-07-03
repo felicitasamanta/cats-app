@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQueryParams } from "../../../../common/hooks/useQueryParams";
-import classes from "../../../../common/styles/Filters.module.css";
 import { useDebounce } from "../../../../common/hooks/useDebounce";
+import classes from "../styles/Search.module.css";
 
 const Search = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -23,9 +23,9 @@ const Search = () => {
   };
 
   return (
-    <div className={classes.filter}>
+    <div className={classes.container}>
       <input
-        className={classes.select_btn}
+        className={classes.input}
         onChange={onSearchChange}
         placeholder="Search..."
         name="search"

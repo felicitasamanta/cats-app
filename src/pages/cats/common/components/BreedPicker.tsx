@@ -1,17 +1,13 @@
 import React from "react";
-import { useQueryParams } from "../../../../common/hooks/useQueryParams";
+import { useQueryParams } from "@/common/hooks/useQueryParams";
+import { Dropdown, Options, Option } from "@/common/components/Dropdown";
 import { useBreeds } from "../hooks/useBreeds";
-import {
-  Dropdown,
-  Option,
-  Options,
-} from "../../../../common/components/Dropdown";
 
-type BreedsProps = {
+type Props = {
   isLoading: boolean;
 };
 
-const Breeds: React.FC<BreedsProps> = ({ isLoading }) => {
+const BreedPicker: React.FC<Props> = ({ isLoading }) => {
   const { isLoading: isBreedsLoading, breeds } = useBreeds();
   const { params, setQueryParams } = useQueryParams();
   const { breed_ids: breedId } = params;
@@ -28,7 +24,9 @@ const Breeds: React.FC<BreedsProps> = ({ isLoading }) => {
     value: "all",
   });
 
-  const onChange = (option: Option) => {
+  type NewType = Option;
+
+  const onChange = (option: NewType) => {
     setQueryParams({
       ...params,
       breed_ids: option.value === "all" ? null : option.value,
@@ -47,4 +45,4 @@ const Breeds: React.FC<BreedsProps> = ({ isLoading }) => {
   );
 };
 
-export { Breeds };
+export { BreedPicker };

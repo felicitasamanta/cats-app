@@ -13,7 +13,7 @@ interface QueryParams {
 }
 
 interface QueryParamsInput {
-  order?: Nullable<Order>;
+  order?: QueryParamValue;
   page?: QueryParamValue;
   breed_ids?: QueryParamValue;
   image_id?: QueryParamValue;

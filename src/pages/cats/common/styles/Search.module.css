@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  font-weight: 600;
+  width: 600px;
+  outline: pink;
+}
+
+.input {
+  display: flex;
+  flex-shrink: 1;
+  width: 100%;
+  padding: 10px;
+  background-color: #ffe5ec;
+  border: 1px solid #ffc2d1;
+  border-radius: 10px;
+  outline-color: #ffc2d1;
+}
+.input:hover {
+  box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.1);
+}

@@ -1,10 +1,8 @@
 .container {
-  margin: 5px;
   padding: 5px;
   flex-wrap: wrap;
-
-  width: 350px;
-  height: 350px;
+  width: 33.33%;
+  height: 31vw;
 }
 
 .img {

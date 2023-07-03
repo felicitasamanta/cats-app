@@ -1,38 +1,8 @@
 import { useEffect, useState } from "react";
-import classes from "../styles/Dropdown.module.css";
+import classes from "@common/styles/Dropdown.module.css";
 import classNames from "classnames";
-
-const IconDown = () => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      height="20"
-      width="20"
-      viewBox="0 0 30 30"
-    >
-      <path
-        d="M 2.65625 6.25 L 1.34375 7.75 L 11.34375 16.75 L 12 17.34375 L 12.65625 16.75 L 22.65625 7.75 L 21.34375 6.25 L 12 14.65625 L 2.65625 6.25 z"
-        fill="#000000"
-      />
-    </svg>
-  );
-};
-
-const IconUp = () => {
-  return (
-    <svg
-      height="20"
-      width="20"
-      viewBox="0 0 30 30"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M12 6.65625L11.34375 7.25L1.34375 16.25L2.65625 17.75L12 9.34375L21.34375 17.75L22.65625 16.25L12.65625 7.25L12 6.65625Z"
-        fill="#000000"
-      />
-    </svg>
-  );
-};
+import { ArrowUp } from "./icons/ArrowUp";
+import { ArrowDown } from "./icons/ArrowDown";
 
 export interface Option {
   name: string;
@@ -60,26 +30,30 @@ const Dropdown: React.FC<Props> = ({
   onChange,
 }) => {
   const [optionsVisible, setShowOptions] = useState(false);
-  const preselectedOption = options.find((option) => option.selected);
   const disabled = isDisabled || isLoading;
+  const [selectedOption, setSelectedOption] = useState<Option | undefined>();
 
-  const getInitialOption = () => {
-    if (preselectedOption) return preselectedOption;
-    if (!preselectedOption && preselect) return options[0];
+  const onSelect = (option: Option) => {
+    setSelectedOption(option);
+    onChange(option);
   };
 
-  const [selectedOption, setSelectedOption] = useState<Option | undefined>(
-    getInitialOption()
-  );
+  const setInitialOption = () => {
+    let initialOption = options.find((option) => option.selected);
+
+    if (!initialOption && preselect) initialOption = options[0];
+
+    if (initialOption && initialOption?.value !== selectedOption?.value) {
+      onSelect(initialOption);
+    }
+  };
 
   useEffect(() => {
-    if (isLoading === false) {
-      const initialOption = getInitialOption();
+    setInitialOption();
+  }, []);
 
-      if (initialOption?.value !== selectedOption?.value) {
-        setSelectedOption(initialOption);
-      }
-    }
+  useEffect(() => {
+    if (isLoading === false) setInitialOption();
   }, [isLoading]);
 
   const close = () => setShowOptions(false);
@@ -91,11 +65,6 @@ const Dropdown: React.FC<Props> = ({
       window.removeEventListener("click", close);
     };
   }, []);
-
-  const onSelect = (option: Option) => {
-    setSelectedOption(option);
-    onChange(option);
-  };
 
   const show = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -116,7 +85,7 @@ const Dropdown: React.FC<Props> = ({
         </div>
         <div className={classes.tools}>
           <div className={classes.tool}>
-            {optionsVisible ? <IconUp /> : <IconDown />}
+            {optionsVisible ? <ArrowUp /> : <ArrowDown />}
           </div>
           {optionsVisible && (
             <div className={classes.menu}>

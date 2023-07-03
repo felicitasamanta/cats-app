@@ -1,7 +1,7 @@
-import { LIMIT } from "../../pages/cats/common/hooks/useCats";
-import { useQueryParams } from "../hooks/useQueryParams";
-import classes from "../styles/Pagination.module.css";
+import { LIMIT } from "@/pages/cats/common/hooks/useCats";
 import React from "react";
+import classes from "@common/styles/Pagination.module.css";
+import { useQueryParams } from "@common/hooks/useQueryParams";
 
 interface Props {
   total: number;
