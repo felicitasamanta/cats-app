@@ -4,14 +4,15 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { CatDetail } from "./pages/cats/CatDetail.tsx";
 import { QueryClient, QueryClientProvider } from "react-query";
 import Cats from "./pages/cats/Cats.tsx";
-import ErrorPage from "./common/components/ErrorPage.tsx";
+import { ErrorPage } from "./common/components/ErrorPage.tsx";
 import "./common/styles/App.css";
 
-const router = createBrowserRouter([
+export const router = createBrowserRouter([
   {
     path: "/",
     element: <Cats />,
     errorElement: <ErrorPage />,
+    children: [],
   },
   {
     path: "/cats/:id",
