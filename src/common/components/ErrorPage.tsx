@@ -5,7 +5,9 @@ const ErrorPage = () => {
     <div>
       <h1>Oops!</h1>
       <p>Sorry, an unexpected error has occurred.</p>
-      <Link to="/home">GO HOME</Link>
+      <Link data-testid="link" to="/home">
+        GO HOME
+      </Link>
     </div>
   );
 };

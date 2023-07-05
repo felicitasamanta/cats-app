@@ -7,19 +7,20 @@ import Cats from "./pages/cats/Cats.tsx";
 import { ErrorPage } from "./common/components/ErrorPage.tsx";
 import "./common/styles/App.css";
 
-export const router = createBrowserRouter([
+export const routes = [
   {
     path: "/",
     element: <Cats />,
     errorElement: <ErrorPage />,
-    children: [],
   },
   {
     path: "/cats/:id",
     element: <CatDetail />,
     errorElement: <ErrorPage />,
   },
-]);
+];
+
+export const router = createBrowserRouter(routes);
 
 const queryClient = new QueryClient({
   defaultOptions: {
