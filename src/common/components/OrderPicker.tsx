@@ -28,6 +28,7 @@ const OrderPicker: React.FC<Props> = ({ isLoading }) => {
   ];
 
   const onChange = (option: Option) => {
+    console.log("change", option);
     setTimeout(() => {
       setQueryParams({
         ...params,

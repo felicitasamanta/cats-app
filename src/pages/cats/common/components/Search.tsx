@@ -25,6 +25,7 @@ const Search = () => {
   return (
     <div className={classes.container}>
       <input
+        data-testid="search"
         className={classes.input}
         onChange={onSearchChange}
         placeholder="Search..."

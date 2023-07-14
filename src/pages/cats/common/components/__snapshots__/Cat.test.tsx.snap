@@ -1,36 +1,59 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Loader > should render correctly 1`] = `
+exports[`Cat > should render correctly 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        class="_loader_0fe09f"
-      >
-        <div>
-          <img
-            alt="Loader"
-            class="_img_0fe09f"
-            data-testid="loader"
-            src="/src/common/assets/loading.gif"
-          />
-        </div>
+      <div>
+        <li
+          class="_container_ceb8ea"
+        >
+          <a
+            href="/cats/cat-id"
+          >
+            <img
+              alt="Cat cat-id"
+              class="_img_ceb8ea"
+              src="cat-image-url"
+            />
+          </a>
+        </li>
+      </div>
+    </div>
+    <div>
+      <div>
+        <li
+          class="_container_ceb8ea"
+        >
+          <a
+            href="/cats/cat-id"
+          >
+            <img
+              alt="Cat cat-id"
+              class="_img_ceb8ea"
+              src="cat-image-url"
+            />
+          </a>
+        </li>
       </div>
     </div>
   </body>,
   "container": <div>
-    <div
-      class="_loader_0fe09f"
-    >
-      <div>
-        <img
-          alt="Loader"
-          class="_img_0fe09f"
-          data-testid="loader"
-          src="/src/common/assets/loading.gif"
-        />
-      </div>
+    <div>
+      <li
+        class="_container_ceb8ea"
+      >
+        <a
+          href="/cats/cat-id"
+        >
+          <img
+            alt="Cat cat-id"
+            class="_img_ceb8ea"
+            src="cat-image-url"
+          />
+        </a>
+      </li>
     </div>
   </div>,
   "debug": [Function],

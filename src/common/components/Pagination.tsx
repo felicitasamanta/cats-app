@@ -1,16 +1,16 @@
-import { LIMIT } from "@/pages/cats/common/hooks/useCats";
 import React from "react";
 import classes from "@common/styles/Pagination.module.css";
 import { useQueryParams } from "@common/hooks/useQueryParams";
 
 interface Props {
   total: number;
+  limit: number;
 }
 
-const Pagination: React.FC<Props> = ({ total }) => {
+const Pagination: React.FC<Props> = ({ total, limit }) => {
   const { params, setQueryParam } = useQueryParams();
   const currentPage = params.page ? parseInt(params.page) : 0;
-  const totalPages = Math.ceil(total / LIMIT);
+  const totalPages = Math.ceil(total / limit);
 
   const onChange = (page: number | string) => {
     if (typeof page === "number") {
@@ -51,7 +51,11 @@ const Pagination: React.FC<Props> = ({ total }) => {
       ];
 
     return pages.map((page, i) => (
-      <span key={i} onClick={() => onChange(page)}>
+      <span
+        key={i}
+        onClick={() => onChange(page)}
+        data-testid="pagination-page"
+      >
         {page}
       </span>
     ));

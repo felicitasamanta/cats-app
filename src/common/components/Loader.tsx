@@ -4,7 +4,12 @@ const Loader = () => {
   return (
     <div className={classes.loader}>
       <div>
-        <img src={loader} className={classes.img} alt="Loader" />
+        <img
+          src={loader}
+          data-testid="loader"
+          className={classes.img}
+          alt="Loader"
+        />
       </div>
     </div>
   );

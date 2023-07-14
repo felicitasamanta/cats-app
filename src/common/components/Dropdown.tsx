@@ -79,8 +79,8 @@ const Dropdown: React.FC<Props> = ({
         [classes.container__disabled]: disabled,
       })}
     >
-      <div onClick={show} className={classes.input}>
-        <div className={classes.selected}>
+      <div data-testid="dropdown" onClick={show} className={classes.input}>
+        <div className={classes.selected} data-testid="dropdown-selected">
           {isLoading ? "Loading..." : selectedOption?.name || placeHolder}
         </div>
         <div className={classes.tools}>
@@ -88,9 +88,15 @@ const Dropdown: React.FC<Props> = ({
             {optionsVisible ? <ArrowUp /> : <ArrowDown />}
           </div>
           {optionsVisible && (
-            <div className={classes.menu}>
+            <div
+              className={classes.menu}
+              id="menu"
+              data-testid="dropdown-options"
+            >
               {options.map((option) => (
                 <div
+                  data-testid="option"
+                  role="option"
                   key={option.value}
                   className={classNames(classes.dropdown_item, {
                     [classes.selected]: option.value === selectedOption?.value,
