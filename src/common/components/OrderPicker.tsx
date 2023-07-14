@@ -5,6 +5,7 @@ import { Order } from "../model";
 type Props = {
   isLoading: boolean;
 };
+
 const OrderPicker: React.FC<Props> = ({ isLoading }) => {
   const { params, setQueryParams } = useQueryParams();
   const { order } = params;
@@ -28,18 +29,17 @@ const OrderPicker: React.FC<Props> = ({ isLoading }) => {
   ];
 
   const onChange = (option: Option) => {
-    console.log("change", option);
     setTimeout(() => {
       setQueryParams({
         ...params,
         order: option.value,
-        page: null,
       });
     });
   };
 
   return (
     <Dropdown
+      data-testid="order-picker"
       options={orderOptions}
       isDisabled={isLoading}
       onChange={onChange}

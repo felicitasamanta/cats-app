@@ -1,13 +1,16 @@
 import { cleanup, render, screen } from "@testing-library/react";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { TestsWrapper } from "../tests/TestsWrapper";
 import userEvent from "@testing-library/user-event";
 import { Pagination } from "./Pagination";
 
 describe("Pagination", () => {
+  beforeEach(() => {
+    vi.resetModules();
+  });
+
   afterEach(() => {
     cleanup();
-    vi.resetModules();
   });
 
   it("should render all pages when there are less or equal to 7 pages", async () => {
@@ -89,7 +92,7 @@ describe("Pagination", () => {
     expect(pages[6].textContent).toEqual("10");
   });
 
-  it("sets query param when the page is clicked", async () => {
+  it("should set query param when the page is clicked", async () => {
     const setQueryParamMock = vi.fn(() => null);
     vi.doMock("../hooks/useQueryParams", () => {
       return {

@@ -95,7 +95,7 @@ const Dropdown: React.FC<Props> = ({
             >
               {options.map((option) => (
                 <div
-                  data-testid="option"
+                  data-testid="dropdown-option"
                   role="option"
                   key={option.value}
                   className={classNames(classes.dropdown_item, {

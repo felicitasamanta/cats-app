@@ -25,6 +25,7 @@ const useQueryParams = () => {
     keyof QueryParams,
     string
   ][];
+
   const params = searchEntries.reduce<QueryParams>((acc, [paramKey, value]) => {
     acc[paramKey] = value as any;
     return acc;
