@@ -8,7 +8,7 @@ interface CatProps {
 
 const Cat: React.FC<CatProps> = ({ cat }) => {
   return (
-    <li className={classes.container}>
+    <li className={classes.container} data-testid="cat">
       <Link to={`/cats/${cat.id}`}>
         <img className={classes.img} src={cat.url} alt={`Cat ${cat.id}`} />
       </Link>
