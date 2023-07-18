@@ -49,11 +49,10 @@ const useQueryParams = () => {
   const removeQueryParam = (key: keyof QueryParams) => {
     const queryParams = { ...params };
     delete queryParams[key];
-    setQueryParams(queryParams);
+    setSearchParams(queryParams);
   };
 
   return {
-    searchParams,
     params,
     queryString: searchParams.toString(),
     setQueryParams,

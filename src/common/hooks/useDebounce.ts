@@ -7,7 +7,7 @@ interface Props<T> {
 }
 
 function useDebounce<T>({ value, delay, onChange }: Props<T>) {
-  const [debouncedValue, setDebouncedValue] = useState<T>(value);
+  const [debouncedValue, setDebouncedValue] = useState<T>();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -20,7 +20,7 @@ function useDebounce<T>({ value, delay, onChange }: Props<T>) {
   }, [value, delay]);
 
   useEffect(() => {
-    onChange(value);
+    if (debouncedValue !== undefined) onChange(debouncedValue);
   }, [debouncedValue]);
 }
 

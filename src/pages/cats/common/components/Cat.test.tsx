@@ -1,4 +1,4 @@
-import { cleanup, render } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { Cat } from "./Cat";
 import { TestsWrapper } from "@/common/tests/TestsWrapper";
@@ -19,7 +19,6 @@ describe("Cat", () => {
     cleanup();
   });
 
-  // pasitvarkyti renderinima
   it("should render correctly", () => {
     expect(
       render(<Cat cat={cat} />, { wrapper: TestsWrapper })
@@ -27,7 +26,8 @@ describe("Cat", () => {
   });
 
   it("should render a cat", () => {
-    const displayedImage = document.querySelector("img") as HTMLImageElement;
-    expect(displayedImage).toBeTruthy();
+    const displayedImage = screen.getByTestId("cat");
+
+    expect(displayedImage).toBeDefined();
   });
 });

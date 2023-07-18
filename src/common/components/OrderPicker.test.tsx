@@ -21,7 +21,6 @@ describe("OrderPicker", () => {
     await user.click(dropdown);
 
     const menu = screen.queryByTestId("dropdown-options");
-
     expect(menu).toBeNull();
   });
 
@@ -29,7 +28,6 @@ describe("OrderPicker", () => {
     render(<OrderPicker isLoading={false} />, { wrapper: TestsWrapper });
 
     const selected = screen.getByTestId("dropdown-selected");
-
     expect(selected.textContent).toEqual("Random");
   });
 
@@ -61,15 +59,14 @@ describe("OrderPicker", () => {
     });
 
     const dropwdown = screen.getByTestId("dropdown");
-
     const user = userEvent.setup();
     await user.click(dropwdown);
 
     expect(screen.getByTestId("dropdown-options")).toBeTruthy();
 
     const options = screen.getAllByTestId("dropdown-option");
-    expect(options.length).toEqual(3);
 
+    expect(options.length).toEqual(3);
     expect(options[0].textContent).toEqual("Random");
     expect(options[1].textContent).toEqual("Ascending");
     expect(options[2].textContent).toEqual("Descending");
@@ -77,6 +74,7 @@ describe("OrderPicker", () => {
 
   it("should set query param when the order is clicked ", async () => {
     const setQueryParamsMock = vi.fn(() => null);
+
     vi.doMock("../hooks/useQueryParams", () => {
       return {
         useQueryParams: () => {

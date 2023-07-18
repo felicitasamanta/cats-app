@@ -42,13 +42,12 @@ describe("ErrorPage", () => {
       { wrapper: TestsWrapper }
     );
 
-    const user = userEvent.setup();
     const link = await component.findByTestId("link");
 
+    const user = userEvent.setup();
     await user.click(link);
 
     const homeScreen = screen.getByText("home");
-
     expect(homeScreen.ELEMENT_NODE).toBeTruthy();
   });
 });

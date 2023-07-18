@@ -1,17 +1,18 @@
 import { useState } from "react";
-import { useQueryParams } from "../../../../common/hooks/useQueryParams";
-import { useDebounce } from "../../../../common/hooks/useDebounce";
+import { useQueryParams } from "@/common/hooks/useQueryParams";
+import { useDebounce } from "@/common/hooks/useDebounce";
 import classes from "../styles/Search.module.css";
 
 const Search = () => {
-  const [searchValue, setSearchValue] = useState("");
-
   const { params, setQueryParam, removeQueryParam } = useQueryParams();
+  const [searchValue, setSearchValue] = useState(params.image_id || "");
 
   const applySearch = (debouncedValue: string) => {
-    if (debouncedValue) {
-      setQueryParam("image_id", searchValue);
-    } else if (!debouncedValue && params.image_id) {
+    const value = debouncedValue.trim();
+
+    if (value) {
+      setQueryParam("image_id", value);
+    } else if (!value && params.image_id) {
       removeQueryParam("image_id");
     }
   };

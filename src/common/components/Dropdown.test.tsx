@@ -74,7 +74,7 @@ describe("Dropdown", () => {
     expect(selected.textContent).equals("");
   });
 
-  it.only("should allow user to change the value", async () => {
+  it("should allow user to change the value", async () => {
     const user = userEvent.setup();
     const dropdown = screen.getByTestId("dropdown");
     await user.click(dropdown);
@@ -105,6 +105,7 @@ describe("Dropdown", () => {
 
   it("should render loading indicator and be disabled when isLoading flag is passed", async () => {
     cleanup();
+
     render(<Dropdown options={options} onChange={() => null} isLoading />);
 
     const user = userEvent.setup();
