@@ -20,7 +20,7 @@ const Cats = () => {
     <div>
       <Filters isLoading={isLoading} />
       <LoaderContainer isLoading={isLoading}>
-        <ul className={classes.list}>
+        <ul className={classes.list} data-testid="cats">
           {data?.map((cat) => (
             <Cat key={cat.id} cat={cat} />
           ))}

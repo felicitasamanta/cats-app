@@ -35,6 +35,6 @@
       "@pages/cats/common/styles/*": ["src/pages/cats/common/styles/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "e2e"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
