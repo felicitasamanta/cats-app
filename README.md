@@ -3,9 +3,9 @@
 Cats App is a TypeScript-based web application that allows users to view cat images, filter by breed, view detailed cat information, and search for a cat by ID. It's built using Vite for development and bundling.
 
 <div style="display: flex; flex-wrap: wrap">
-    <img src="src/assets/images/load.png" width="50%" />
+    <img src="src/common/assets/images/load.png" width="50%" />
     &nbsp;
-    <img src="src/assets/images/searchByBreed.png" width="50%" />
+    <img src="src/common/assets/images/searchByBreed.png" width="50%" />
    
 </div>
 
